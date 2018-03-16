@@ -30,7 +30,7 @@ public class Kunde implements Serializable{
     @Id
     @GeneratedValue(generator = "customer_ids")
     @TableGenerator(name = "customer_ids", initialValue = 0, allocationSize = 50)
-    private String id;
+    private long id;
     
     @Column(name = "VORNAME")
     @NotNull(message = "Der Vorname darf nicht leer sein.")
@@ -65,7 +65,7 @@ public class Kunde implements Serializable{
     List<Leihvertrag> leihvertrage = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="SETTER und Getter">
-    public String getId() {
+    public long getId() {
         return id;
     }
     
@@ -97,7 +97,7 @@ public class Kunde implements Serializable{
         return land;
     }
     
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
     
