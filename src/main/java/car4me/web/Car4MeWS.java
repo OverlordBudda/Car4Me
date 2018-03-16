@@ -38,32 +38,36 @@ public class Car4MeWS {
     
     @WebMethod(operationName = "createCustomer")
     @WebResult(name = "kunde")
-    public Kunde createKunde(@WebParam(name = "kunde") Kunde kunde/**, @WebParam(name = "vorname") String vorname,@WebParam(name = "nachname") String nachname,@WebParam(name = "strasse") String strasse,@WebParam(name = "hausnummer") String hausnummer,@WebParam(name = "plz") String plz,@WebParam(name = "ort") String ort,@WebParam(name = "land") String land*/){
+    public Kunde createCustomer(@WebParam(name = "kunde") Kunde kunde/**, @WebParam(name = "vorname") String vorname,@WebParam(name = "nachname") String nachname,@WebParam(name = "strasse") String strasse,@WebParam(name = "hausnummer") String hausnummer,@WebParam(name = "plz") String plz,@WebParam(name = "ort") String ort,@WebParam(name = "land") String land*/){
         return ejbK.saveNew(kunde);
     }
     
     @WebMethod(operationName = "createCar")
     @WebResult(name = "car")
-    public Fahrzeug createFahrzeug(@WebParam(name = "fahrzeug")Fahrzeug fahrzeug){
+    public Fahrzeug createCar(@WebParam(name = "fahrzeug")Fahrzeug fahrzeug){
         return ejbF.saveNew(fahrzeug);
     }
     
     @WebMethod(operationName = "createContract")
     @WebResult(name = "contract")
-    public Leihvertrag createLeihvertrag(@WebParam(name = "leihvertrag")Leihvertrag leihvertrag){
-        return ejbL.??(leihvertrag);
+    public Leihvertrag createContract(@WebParam(name = "leihvertrag")Leihvertrag leihvertrag){
+        try{
+        return ejbL.createLeihvertrag(leihvertrag);
+        }catch (Exception e){
+           return null;
+        }
     }
     
     @WebMethod(operationName = "getAllVehicle")
     @WebResult(name = "vehicle")
-    public List<Fahrzeug> getAllFahrzeuge(){
+    public List<Fahrzeug> getAllVehicle(){
         return ejbF.findAll();
     }
     
     @WebMethod(operationName = "getContracts")
     @WebResult(name = "leihvertrag")
-    public List<Leihvertrag> getLeihvertrage(Kunde kunde){
-        return ejbL.??();
+    public List<Leihvertrag> getContracts(Kunde kunde){
+        return ejbL.getLeihvertrage(kunde);
     }
     
 }
