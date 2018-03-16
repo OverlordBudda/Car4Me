@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -23,7 +25,7 @@ public class Leihvertrag implements Serializable{
     @Id
     @GeneratedValue(generator = "contract_ids")
     @TableGenerator(name = "contract_ids", initialValue = 0, allocationSize = 50)
-    private String id;
+    private Long id;
     
     @ManyToOne
     private Kunde kunde;
@@ -32,19 +34,21 @@ public class Leihvertrag implements Serializable{
     private Fahrzeug fahrzeug;
     
     @Column(name = "BEGINNDATUM")
+    @Temporal(TemporalType.DATE)
     @NotNull(message = "Das Beginndatum darf nicht leer sein.")
-    private Date beginnDatum;
+    private Date beginnDatum = new Date();
     
     @Column(name = "ENDEDATUM")
+    @Temporal(TemporalType.DATE)
     @NotNull(message = "Das Endedatum darf nicht leer sein.")
-    private Date endeDatum;
+    private Date endeDatum = new Date();
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
-    public String getId() {
+    public Long getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
