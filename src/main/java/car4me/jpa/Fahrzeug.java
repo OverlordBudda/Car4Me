@@ -28,7 +28,7 @@ public class Fahrzeug implements Serializable{
     @Id
     @GeneratedValue(generator = "car_ids")
     @TableGenerator(name = "car_ids", initialValue = 0, allocationSize = 50)
-    private String id;
+    private Long id;
     
     @Column(name = "HERSTELLER")
     @NotNull(message = "Der Hersteller darf nicht leer sein.")
@@ -47,11 +47,11 @@ public class Fahrzeug implements Serializable{
     
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
-    public String getId() {
+    public Long getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
