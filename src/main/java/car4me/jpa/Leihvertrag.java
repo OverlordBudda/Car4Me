@@ -30,9 +30,11 @@ public class Leihvertrag implements Serializable{
     @TableGenerator(name = "contract_ids", initialValue = 0, allocationSize = 50)
     private Long id;
     
+    @NotNull
     @ManyToOne
     private Kunde kunde;
     
+    @NotNull
     @ManyToOne
     private Fahrzeug fahrzeug;
     

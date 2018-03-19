@@ -45,10 +45,12 @@ public class LeihvertragBean extends EntityBean<Leihvertrag, Long>{
         
         
     }
-    
-    public List<Leihvertrag> getLeihvertrage(Kunde k){
-        return em.createQuery("SELECT l FROM Leihvertrag l WHERE l.getKunde().getId() = :k.getId()")
-                .setParameter("k", k)
+   
+    public List<Leihvertrag> findByKUNDE_ID(Kunde kunde){
+        long id = kunde.getId();
+        return em.createQuery("SELECT l FROM Leihvertrag l WHERE l.kunde.id = :id")
+                .setParameter("id", id)
                 .getResultList();
     }
+   
 }

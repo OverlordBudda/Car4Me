@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -29,40 +28,37 @@ public class Kunde implements Serializable{
     
     @Id
     @GeneratedValue(generator = "customer_ids")
-    @TableGenerator(name = "customer_ids", initialValue = 0, allocationSize = 50)
     private long id;
     
     @Column(name = "VORNAME")
     @NotNull(message = "Der Vorname darf nicht leer sein.")
-    private String vorname;
+    private String vorname="";;
     
     @Column(name = "NACHNAME")
     @NotNull(message = "Der Nachname darf nicht leer sein.")
-    private String nachname;
+    private String nachname="";;
     
     @Column(name = "STRASSE")
     @NotNull(message = "Straße darf nicht leer sein.")
-    private String strasse;
+    private String strasse="";;
     
     @Column(name = "HAUSNUMMER")
     @NotNull(message = "Hausnummer darf nicht leer sein.")
-    private String hausnummer;
+    private String hausnummer="";
     
     @Column(name = "PLZ")
     @Size(min = 5, max = 5, message = "Feld PLZ muss fünf lang sein.")
     @NotNull(message = "PLZ darf nicht leer sein.")
-    private String plz;
+    private String plz="";
 
     @Column(name = "ORT")
     @NotNull(message = "Ort darf nicht leer sein.")
-    private String ort;
+    private String ort="";
     
     @Column(name = "LAND")
     @NotNull(message = "Land darf nicht leer sein.")
-    private String land;
+    private String land="";
     
-    @OneToMany(mappedBy = "kunde", fetch = FetchType.LAZY)
-    List<Leihvertrag> leihvertrage = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="SETTER und Getter">
     public long getId() {
@@ -128,15 +124,6 @@ public class Kunde implements Serializable{
     public void setLand(String land) {
         this.land = land;
     }
-
-    public List<Leihvertrag> getLeihvertrage() {
-        return leihvertrage;
-    }
-
-    public void setLeihvertrage(List<Leihvertrag> leihvertrage) {
-        this.leihvertrage = leihvertrage;
-    }
-    
     
 //</editor-fold>
 
