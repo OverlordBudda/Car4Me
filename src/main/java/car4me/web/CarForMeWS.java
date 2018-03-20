@@ -47,6 +47,11 @@ public class CarForMeWS {
     public Kunde saveCustomer(@WebParam(name = "kunde") Kunde kunde) {
         return kundeBean.saveNew(kunde);
     }
+    @WebMethod(operationName = "searchCustomer")
+    @WebResult(name = "kunde")
+    public Kunde searchCustomer(@WebParam(name = "id") Long id) {
+        return kundeBean.findById(id);
+    }
     @WebMethod(operationName = "getAllCars")
     @WebResult(name = "fahrzeugList")
     public List<Fahrzeug> getAllCar() {
@@ -57,7 +62,7 @@ public class CarForMeWS {
     public Leihvertrag createContract(@WebParam(name = "contract") Leihvertrag leihvertrag) {
         return leihvertragBean.saveNew(leihvertrag);
     }
-    @WebMethod(operationName = "getAllContracts")
+    @WebMethod(operationName = "getContracts")
     @WebResult(name = "contracts")
     public List<Leihvertrag> getContracts(@WebParam(name = "customer") Kunde kunde) {
         return leihvertragBean.findByKUNDE_ID(kunde);
